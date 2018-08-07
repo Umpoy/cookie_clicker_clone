@@ -22,10 +22,14 @@ function assignClickHandler() {
         renderCookies();
     });
     $(".cursor").on("click", function () {
+        if (cookieCostFormula(cursor) > cookies) {
+            console.log("not enough cookies");
+            return
+        }
         cursor.quantity++;
         cookiesPerSecond += cursor.CPS;
-        console.log(cursor);
-        console.log(cookiesPerSecond);
+        cookies -= cookieCostFormula(cursor);
+        renderCookies();
 
     })
 }
