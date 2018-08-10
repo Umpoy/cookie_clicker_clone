@@ -1,15 +1,11 @@
 var cookies = 0;
 var cookiesPerSecond = 0;
 //quantity
-var cursor = {
-    baseCost: 15,
-    quantity: 0,
-    CPS: 0.1
-}
+
 $(document).ready(init);
 
 function init() {
-    renderCookies();
+    renderToDOM();
     assignClickHandler();
     setInterval(function () {
         autoAddCookies();
@@ -19,7 +15,7 @@ function init() {
 function assignClickHandler() {
     $(".cookie").on("click", function () {
         cookies++;
-        renderCookies();
+        renderToDOM();
     });
     $(".cursor").on("click", function () {
         if (cookieCostFormula(cursor) > cookies) {
@@ -29,13 +25,15 @@ function assignClickHandler() {
         cursor.quantity++;
         cookiesPerSecond += cursor.CPS;
         cookies -= cookieCostFormula(cursor);
-        renderCookies();
+        renderToDOM();
 
     })
 }
 
-function renderCookies() {
+function renderToDOM() {
+    // unlockStore();
     $(".cookieAmount").html(Math.round(cookies));
+    $(".CPS").html(cookiesPerSecond);
 }
 
 function cookieCostFormula(obj) {
@@ -44,5 +42,9 @@ function cookieCostFormula(obj) {
 
 function autoAddCookies() {
     cookies += cookiesPerSecond;
-    renderCookies();
+    renderToDOM();
 }
+
+// function unlockStore(){
+
+// }
