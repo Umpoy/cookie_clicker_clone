@@ -9,3 +9,7 @@
     width: 200px;
     border-radius: 100%;
 }
+
+.hidden {
+    visibility: hidden;
+}
